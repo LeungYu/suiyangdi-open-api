@@ -88,7 +88,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
   "status": 200
   "data": {
     "id": 1, // 队列ID，更新队列状态的时候需要用到
-    "commands": "#spawnitem item1 5 locate 76561111111111111\n#spawnitem item2 3 locate 76561111111111111", // 需要发送的指令，以\n分割换行，下面会介绍特殊指令
+    "commands": "【玩家】， 您购买的商品将在60秒内到达，请在原地等候\n[玩家],  your order [commodity] will be proccessed in 60 seconds，please wait\n#teleportto 76566776677667776\n#SpawnItem BP_ImprovisedSmallPaddle\n 您购买的商品已发货完毕，请查收\n your order [commodity] has been delivered，please check\n#teleport 0 0 200", // 需要发送的指令，以\n分割换行，下面会介绍特殊指令
     "status": "created", // 队列状态 created: 新建, processed: 正在发货, fullfilled: 已完成
     "buyId": "2|4" // 关联的购买记录ID，可能是"2"或者"2|4"这种形式，以区别关联了一个或者多个订单，购买玩家位置的时候调用"/buy/buyUserLocationCallback"上传位置需要用到
     ...
@@ -110,6 +110,30 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 * `<buy-teleport-squad>~${steamId}~${toSteamId}`: 购买队友传送，发货之前要获取这传送/被传送玩家的坐标替换一下指令的两个steam ID
 * `<callback-buy-user-location>~${steamId}~${buyId}`: 购买玩家位置，获取玩家位置之后调用`PUT /buy/buyUserLocationCallback`回调接口上传获取到的坐标
 * `<callback-location-expose>`: 上传不带玩家信息的地图坐标列表，获取玩家位置之后调用`PUT /buy/locationExposeCallback`回调接口上传获取到的坐标列表
+
+**特殊策略触发**
+1. 机器人离线策略触发 - nitrado服务器日志不实时，故不予处理
+```json
+{
+  "status": 200
+  "data": {
+    "action": "offline"
+  },
+  "msg": ""
+}
+```
+2. 服务器重启保护策略触发
+```json
+{
+  "status": 200
+  "data": {
+    "action": "offline",
+    "before": 10, // 重启前n分钟 - 没有传的话机器人默认两分钟
+    "after": 10 // 重启后n分钟 - 没有传的话机器人默认两分钟
+  },
+  "msg": ""
+}
+```
 #### GET /queue/nextPendingMonitor
 ##### 说明
 监控探头功能专用机器人，获取下一条未处理消息队列
@@ -134,6 +158,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
   "msg": ""
 }
 ```
+**特殊策略触发方针和`GET /queue/nextPending`一致**
 #### GET /buy/listDidiVehicleIds
 ##### 说明
 队列行解析识别到`<clean-didi-vehicles-by-id>`的时候获取最新的滴滴车列表进行清理，此方式比较精准，避免把一整个型号变成滴滴车

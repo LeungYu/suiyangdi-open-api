@@ -81,6 +81,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 |filterNotBuy|否|query|string|只接受非订单消息|无|
 |filterOnlyBountyHunter|否|query|string|只接受赏金猎人消息|无|
 |filterOnlyNormal|否|query|string|非订单和特殊功能之外的所有消息|无|
+
 *需要注意的是，多机器人模式定义了n台机器人就要n台机器人都在线，否则每少一台机器人就会漏发多大约1/n的消息*
 ##### 出参
 ```json

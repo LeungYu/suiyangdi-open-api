@@ -144,6 +144,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 |filterMultiRobotTotal|否|query|string|多机器人模式的机器人总数，仅filterMultiRobot=1的时候生效|无|
 |filterMultiRobotNum|否|query|string|多机器人模式的机器人编号(1-n)，仅filterMultiRobot=1的时候生效|无|
 |filterDoubleSingle|否|query|string|单双机器人模式，single是1号，double是2号，与前面的多机器人模式冲突|无|
+
 *需要注意的是，多机器人模式定义了n台机器人就要n台机器人都在线，否则每少一台机器人就会漏发多大约1/n的消息*
 ##### 出参
 ```json

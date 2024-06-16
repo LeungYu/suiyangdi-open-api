@@ -63,6 +63,9 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
     "RobotRPYConfig": { "R": 0,"P": 0.220856,"Y": 73.575951 }, // 发货商品使用远程发货模式2的时候机器人发货所需要的球坐标设置
     "EnableAutoFetchVehicleIdList": true, // 是否开启定时上传全图载具列表
     "EnableAutoFetchPlayerLocationList": true, // 是否开启定时上传玩家信息和位置列表
+    "EnableInnerMode": true, // 是否启用内置商城
+    "EnableNativeInnerMode": true, // 为ture的时候启用机器人识别，false的时候使用ftp日志
+    "InnerModeConfigs": [{"function":"signup","enable":true,"keywordEn":"@signup","keywordCn":"@注册"}], // 内置商城配置 function->指令功能的key enable->是否启用 keywordEn->英文识别前缀 keywordCn->中文识别前缀
   },
   "msg": ""
 }
@@ -285,6 +288,53 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
   "msg": ""
 }
 ```
+#### POST /innerMode/userRequest
+##### 说明
+内置商城模式启用且机器人识别启用的时候，通过这个接口上传用户的指令
+##### 入参
+|参数名|必填|参数类型|数据类型|描述|默认值|
+| :------------ | :------------ | :------------ | :------------ | :------------ | :------------ |
+|action|是|json|string|指令功能的key|无|
+|steamId|是|json|string|发送者的Steam ID|无|
+|scumId|是|json|string|发送者的游戏名|无|
+|channel|是|json|string|消息发送的频道(Global->公屏 Squad->队内 Local->附近 Admin->管理)|无|
+|message|是|json|string|消息原文|无|
+
+**action支持的指令功能key和它们的含义**
+|指令功能的key|含义
+| :------------ | :------------ |
+|signup|注册用户|
+|welcomepack|领取新手礼包|
+|welcomedidi|领取新手滴滴车|
+|purchase|购买商品/套餐|
+|sendset|发送套餐|
+|teleportzone|地图分区域传送|
+|teleporthot|热点区域传送|
+|teleportprivate|私人传送|
+|dollarloot|美金抽奖|
+|itemloot|物品抽奖|
+|getfame|声望兑换|
+|transit|玩家转账|
+|monthlyset|优惠月卡|
+|checkin|每日签到|
+|chekinpack|领取签到礼包|
+|achievepack|领取成就礼包|
+|lottery|购买公益彩票|
+|squad|队伍管理|
+|teleportsquad|队伍传送|
+|squadgather|梁山好汉|
+|bountyhunter|赏金猎人|
+|joinhunter|领取猎人任务|
+##### 出参
+```json
+{
+  "status": 200
+  "data": {
+    "message": "" // 回显给公屏的内容
+  },
+  "msg": ""
+}
+```
 #### POST /user/updateUserLogins
 ##### 说明
 帝国神话游戏专用，机器人上传玩家登录退出记录，需要按照时间先后顺序升序排列
@@ -294,12 +344,12 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 |records|是|json|array|登录退出记录|无|
 
 **records数组的元素**
-|参数名|必填|参数类型|数据类型|描述|默认值|
-| :------------ | :------------ | :------------ | :------------ | :------------ | :------------ |
-|steamId|是|json|string|玩家17位Steam ID|无|
-|scumId|是|json|string|玩家服务器ID|无|
-|status|是|json|string|登录还是退出(login/logout)|无|
-|timeStamp|是|json|string|毫秒时间戳|无|
+|参数名|必填|数据类型|描述|默认值|
+| :------------ | :------------ | :------------ | :------------ | :------------ |
+|steamId|是|string|玩家17位Steam ID|无|
+|scumId|是|string|玩家服务器ID|无|
+|status|是|string|登录还是退出(login/logout)|无|
+|timeStamp|是|string|毫秒时间戳|无|
 ##### 出参
 ```json
 {

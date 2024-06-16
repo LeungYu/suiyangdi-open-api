@@ -325,6 +325,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 |squadgather|梁山好汉|
 |bountyhunter|赏金猎人|
 |joinhunter|领取猎人任务|
+|exithunter|退出猎人任务|
 ##### 出参
 ```json
 {

@@ -64,7 +64,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
     "EnableAutoFetchVehicleIdList": true, // 是否开启定时上传全图载具列表
     "EnableAutoFetchPlayerLocationList": true, // 是否开启定时上传玩家信息和位置列表
     "EnableInnerMode": true, // 是否启用内置商城
-    "EnableNativeInnerMode": true, // 为ture的时候启用机器人识别，false的时候使用ftp日志
+    "EnableNativeInnerMode": true, // 为true的时候启用机器人识别，false的时候使用ftp日志
     "InnerModeConfigs": [{"function":"signup","enable":true,"keywordEn":"@signup","keywordCn":"@注册"}], // 内置商城配置 function->指令功能的key enable->是否启用 keywordEn->英文识别前缀 keywordCn->中文识别前缀
   },
   "msg": ""

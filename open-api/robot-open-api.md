@@ -330,9 +330,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 ```json
 {
   "status": 200
-  "data": {
-    "message": "" // 回显给公屏的内容
-  },
+  "data": {},
   "msg": ""
 }
 ```

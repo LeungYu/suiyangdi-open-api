@@ -66,6 +66,8 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
     "EnableInnerMode": true, // 是否启用内置商城
     "EnableNativeInnerMode": true, // 为true的时候启用机器人识别，false的时候使用ftp日志
     "InnerModeConfigs": [{"function":"signup","enable":true,"keywordEn":"@signup","keywordCn":"@注册"}], // 内置商城配置 function->指令功能的key enable->是否启用 keywordEn->英文识别前缀 keywordCn->中文识别前缀
+    "InnerModeShortCutConfigs": [{"shortcut":"@炼体区", "original":"@购买 传送到炼体区 1","enable":true}], // 内置商城快捷指令配置 shortcut->快捷指令 original->原指令 enable->是否启用
+    "InnerModeDiyFaqConfigs": [{"ask":"指令大全", "answers":["@购买 等配置", "@购买 等配置"],"enable":true}], // 内置商城自定义问答配置 ask->问题 answers->答案，一个数组元素一行 enable->是否启用
   },
   "msg": ""
 }

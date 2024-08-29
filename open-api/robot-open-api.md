@@ -118,7 +118,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 * `<callback-buy-user-location>~${steamId}~${buyId}`: 购买玩家位置，获取玩家位置之后调用`PUT /buy/buyUserLocationCallback`回调接口上传获取到的坐标
 * `<callback-location-expose>`: 上传不带玩家信息的地图坐标列表，获取玩家位置之后调用`PUT /buy/locationExposeCallback`回调接口上传获取到的坐标列表
 * `<rename-steam-id>~${steamId}~${newName}`: 重命名某Steam ID玩家的游戏名称
-* `<relevel-steam-id>~${steamId}~${militaryLevel}`: 给某Steam ID玩家的游戏名称前缀塞入军衔等级(militaryLevel为null的时候代表去除军衔)
+* `<relevel-steam-id>~${steamId}~${militaryLevel}`: 给某Steam ID玩家的游戏名称前缀塞入军衔等级(militaryLevel为空字符串的时候代表去除军衔)
 
 **特殊策略触发**
 1. 机器人离线策略触发 - nitrado服务器日志不实时，故不予处理

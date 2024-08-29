@@ -117,6 +117,8 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 * `<buy-teleport-squad>~${steamId}~${toSteamId}`: 购买队友传送，发货之前要获取这传送/被传送玩家的坐标替换一下指令的两个steam ID
 * `<callback-buy-user-location>~${steamId}~${buyId}`: 购买玩家位置，获取玩家位置之后调用`PUT /buy/buyUserLocationCallback`回调接口上传获取到的坐标
 * `<callback-location-expose>`: 上传不带玩家信息的地图坐标列表，获取玩家位置之后调用`PUT /buy/locationExposeCallback`回调接口上传获取到的坐标列表
+* `<rename-steam-id>~${steamId}~${newName}`: 重命名某Steam ID玩家的游戏名称
+* `<relevel-steam-id>~${steamId}~${militaryLevel}`: 给某Steam ID玩家的游戏名称前缀塞入军衔等级
 
 **特殊策略触发**
 1. 机器人离线策略触发 - nitrado服务器日志不实时，故不予处理
@@ -330,6 +332,9 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 |bountyhunter|赏金猎人|
 |joinhunter|领取猎人任务|
 |exithunter|退出猎人任务|
+|comparesize|比大小|
+|recycleitem|物品回收(*需要机器人先检测妥当再执行回调)|
+|militarylevel|购买军衔|
 ##### 出参
 ```json
 {

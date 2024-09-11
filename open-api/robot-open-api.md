@@ -68,7 +68,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
     "InnerModeConfigs": [{"function":"signup","enable":true,"keywordEn":"@signup","keywordCn":"@注册"}], // 内置商城配置 function->指令功能的key enable->是否启用 keywordEn->英文识别前缀 keywordCn->中文识别前缀
     "InnerModeShortCutConfigs": [{"shortcut":"@炼体区", "original":"@购买 传送到炼体区 1","enable":true}], // 内置商城快捷指令配置 shortcut->快捷指令 original->原指令 enable->是否启用
     "InnerModeDiyFaqConfigs": [{"ask":"指令大全", "answers":["@购买 等配置", "@购买 等配置"],"enable":true}], // 内置商城自定义问答配置 ask->问题 answers->答案，一个数组元素一行 enable->是否启用
-    "RecycleConfigs": [{"title":"召唤空投", "needs":[{"item": "BP_C4", "count":3}, {"item": "BP_Weapon_MP5", "count":1}], "actions": [{"configType": "vip", ...其他参数}], "enable":true}], // 物品回收设置 title->选项标题 needs->需要物品和达到的数量 actions-> 满足条件后触发的动作 enable->是否启用
+    "ResourceRecycleConfigs": [{"title":"召唤空投", "needs":[{"item": "BP_C4", "count":3}, {"item": "BP_Weapon_MP5", "count":1}], "actions": [{"configType": "vip", ...其他参数}], "enable":true}], // 物品回收设置 title->选项标题 needs->需要物品和达到的数量 actions-> 满足条件后触发的动作 enable->是否启用
   },
   "msg": ""
 }

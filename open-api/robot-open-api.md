@@ -335,6 +335,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 |comparesize|比大小|
 |recycleitem|物品回收(*需要机器人先检测妥当再执行回调)|
 |militarylevel|购买军衔|
+|specialgodmode|购买建家权限|
 ##### 出参
 ```json
 {

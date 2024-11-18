@@ -97,7 +97,20 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
     "id": 1, // 队列ID，更新队列状态的时候需要用到
     "commands": "【玩家】， 您购买的商品将在60秒内到达，请在原地等候\n[玩家],  your order [commodity] will be proccessed in 60 seconds，please wait\n#teleportto 76566776677667776\n#SpawnItem BP_ImprovisedSmallPaddle\n 您购买的商品已发货完毕，请查收\n your order [commodity] has been delivered，please check\n#teleport 0 0 200", // 需要发送的指令，以\n分割换行，下面会介绍特殊指令
     "status": "created", // 队列状态 created: 新建, processed: 正在发货, fullfilled: 已完成
-    "buyId": "2|4" // 关联的购买记录ID，可能是"2"或者"2|4"这种形式，以区别关联了一个或者多个订单，购买玩家位置的时候调用"/buy/buyUserLocationCallback"上传位置需要用到
+    "buyId": "2|4", // 关联的购买记录ID，可能是"2"或者"2|4"这种形式，以区别关联了一个或者多个订单，购买玩家位置的时候调用"/buy/buyUserLocationCallback"上传位置需要用到
+    "configs": {
+      "matchedLimitaion": [ // 指定区域内禁止执行传送，区分传入限制和传出限制，仅传送相关功能生效，影响范围：区域传送、选点传送、热点传送、队友传送、梁山好汉等
+        {
+          "type": "teleportFrom|teleportTo", // 规则类型 teleportFrom: 传出限制，传送人所在坐标 teleportTo: 传入限制，传送目的地所在坐标
+          "ranges": [ // 矩形坐标范围 多个
+            {
+              "fromXY": {"x": "-100", "y": "-100"},
+              "toXY": {"x": "100", "y": "100"}
+            }
+          ]
+        }
+      ]
+    }
     ...
   },
   "msg": ""

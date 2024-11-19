@@ -99,7 +99,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
     "status": "created", // 队列状态 created: 新建, processed: 正在发货, fullfilled: 已完成
     "buyId": "2|4", // 关联的购买记录ID，可能是"2"或者"2|4"这种形式，以区别关联了一个或者多个订单，购买玩家位置的时候调用"/buy/buyUserLocationCallback"上传位置需要用到
     "configs": {
-      "matchedLimitaion": [ // 指定区域内禁止执行传送，区分传入限制和传出限制，仅传送相关功能生效，影响范围：区域传送、选点传送、热点传送、队友传送、梁山好汉等
+      "matchedLimitaions": [ // 指定区域内禁止执行传送，区分传入限制和传出限制，仅传送相关功能生效，影响范围：区域传送、选点传送、热点传送、队友传送、梁山好汉等
         {
           "type": "teleportFrom|teleportTo", // 规则类型 teleportFrom: 传出限制，传送人所在坐标 teleportTo: 传入限制，传送目的地所在坐标
           "ranges": [ // 矩形坐标范围 多个

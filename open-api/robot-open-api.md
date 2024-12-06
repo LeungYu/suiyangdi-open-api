@@ -73,6 +73,33 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
   "msg": ""
 }
 ```
+#### GET /serverConfig/serverStatusRobot
+##### 说明
+获取服务器信息
+##### 入参
+无
+##### 出参
+```json
+{
+  "status": 200
+  "data": {
+    "ServerIP": "92.168.10.1:12345", // 服务器IP地址
+    "OnlinePlayers": "90/100", // 服务器在线人数/服务器槽位
+    "ServerDetail": { // 从battlemetric获取的服务器信息
+      "name": "test", // 服务器名字
+      "ip": "92.168.10.1:12345", // 服务器IP
+      "country": "china", // 地区
+      "players": "90", // 人数
+      "status": "online", // 状态
+      "rank": "1", // 排名
+      "details": {
+        ...其他信息
+      },
+    }
+  },
+  "msg": ""
+}
+```
 #### GET /queue/nextPending
 ##### 说明
 获取下一条未处理消息队列
@@ -349,6 +376,7 @@ req.header["scum-store-secret-key"] = `${第三方鉴权字段}`
 |recycleitem|物品回收(*需要机器人先检测妥当再执行回调)|
 |militarylevel|购买军衔|
 |specialgodmode|购买建家权限|
+|serverstatus|查询服务器状态(*不需要调用此接口，直接调用 GET /serverConfig/serverStatusRobot 取返回的数据输出到公屏)|
 ##### 出参
 ```json
 {
